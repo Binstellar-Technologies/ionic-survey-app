@@ -1,0 +1,90 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="ion-text-center"><b>Survey</b></ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--   <ion-label style="display: flex;justify-content: center;">
+    {{ currentSlide.name }} Details
+  </ion-label> -->
+  <ng-container>
+    <ion-slides [options]="slidesOpts" (ionSlideDidChange)="onSlidesDidChange()"
+      (ionSlideWillChange)="onSlidesChanged()">
+      <ng-container *ngFor="let slide of slides">
+        <ion-slide>
+          <ion-row class="ion-padding">
+            <form [formGroup]="basicForm" *ngIf="slide.name === 'Basic'">
+              <ion-row>
+                <ion-col size="12">
+                  <ion-label><b>How old are you?</b></ion-label>
+                  <ion-input  type="text" placeholder="Age" formControlName="age"></ion-input>
+                </ion-col>
+
+                <ion-col size="12">
+                  <ion-label><b>Gender</b></ion-label>
+                  <ion-item class="ion-text-center">
+                    <ion-radio-group value="Male" placeholder="Select Gender" formControlName="gender" style="display: flex; justify-content: center; margin: auto;"> 
+                      <ion-item>
+                        <ion-label>Male</ion-label>
+                        <ion-radio slot="end" value="Male"></ion-radio>
+                      </ion-item>
+                  
+                      <ion-item>
+                        <ion-label>Female</ion-label>
+                        <ion-radio slot="end" value="Female"></ion-radio>
+                      </ion-item>
+                    </ion-radio-group>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </form>
+            <form [formGroup]="familyForm" *ngIf="slide.name === 'Family'">
+              <ion-row>
+                <ion-col size="12">
+                  <ion-label>
+                    <b>How many members are there in your family?</b>
+                  </ion-label>
+                  <ion-input formControlName="members" type="text" placeholder="Member"></ion-input>
+                </ion-col>
+                <ion-col size="12">
+
+                </ion-col>
+              </ion-row>
+            </form>
+            <form [formGroup]="HobbyForm" *ngIf="slide.name === 'Hobby'">
+              <ion-label><b>Hobby</b></ion-label>
+              <ion-select  [value]="null" placeholder="Select Hobby" multiple="true" formControlName="hobby">
+                <ion-select-option value="Sports">Sports</ion-select-option>
+                <ion-select-option value="Travelling">Travelling</ion-select-option>
+                <ion-select-option value="Singing">Singing</ion-select-option>
+                <ion-select-option value="Dancing">Dancing</ion-select-option>
+                <ion-select-option value="Other">Other</ion-select-option>
+              </ion-select>
+            </form>
+
+            <ion-row *ngIf="slide.name === 'Submit'">
+              <ion-label><b>Thank You for your response</b></ion-label>
+            </ion-row>
+          </ion-row>
+        </ion-slide>
+      </ng-container>
+    </ion-slides>
+  </ng-container>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <form class="ion-text-center">
+    <ng-container *ngIf="!isEnd">
+      <ion-button strong shape="round" color="medium" [style.visibility]="(isBeginning || isEnd) ? 'disabled' : ''"
+        (click)="onBackButtonTouched()">
+        Previous
+      </ion-button>
+
+      <ion-button strong shape="round" color="primary" [style.visibility]="isEnd ? 'hidden' : ''"
+        (click)="onNextButtonTouched()">
+        Next
+      </ion-button>
+    </ng-container>
+  </form>
+</ion-footer>

@@ -1,0 +1,7 @@
+{
+  "name": "ionic_survey_app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "ionic_survey_app",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
